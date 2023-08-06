@@ -4,6 +4,8 @@
 local M = {}
 
 M.open = function()
+  local require('cmp').setup.buffer { enabled = false }
+
   local currName = vim.fn.expand "<cword>" .. " "
 
   local win = require("plenary.popup").create(currName, {
@@ -46,6 +48,7 @@ M.open = function()
 end
 
 M.apply = function(curr, win)
+  local require('cmp').setup.buffer { enabled = true }
   local newName = vim.trim(vim.fn.getline ".")
   vim.api.nvim_win_close(win, true)
 
